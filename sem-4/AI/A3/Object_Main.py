@@ -185,7 +185,7 @@ def custom_loss(y_true, y_pred):
     
     # Parameters for weighting
     weight_noobj = 0.3   # Weight for confidence when no object
-    weight_coord = 9.0   # Weight for bounding box coordinates (Super high)
+    weight_coord = 4.0   # Weight for bounding box coordinates (Super high)
                          # Still sucks though.
     
     # 1. Confidence loss (using MSE):
@@ -213,8 +213,8 @@ def custom_loss(y_true, y_pred):
 # Compile and train model:
 model.compile(optimizer='adam', loss=custom_loss)
 print("\n... Training the model")
-history = model.fit(images, y_true, epochs=35, batch_size=16, validation_split=0.2)
-model.save("custom_model.keras")
+history = model.fit(images, y_true, epochs=70, batch_size=16, validation_split=0.2)
+model.save("custom_model.keras", save_format="keras")
 print("Model saved as custom_model.keras")
 
 # Plotting loss curve:
